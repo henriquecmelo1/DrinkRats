@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from endpoints.router import router
+from routers import all_routers
 
 app = FastAPI()
-app.include_router(router)
+
+for router in all_routers:
+    app.include_router(router)
 
