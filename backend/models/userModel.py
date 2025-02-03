@@ -9,5 +9,6 @@ class UserModel(Base):
     name = Column(String)
     points = Column(Integer)
 
-    logs = relationship("Log", back_populates="user")
+    # logs = relationship("LogModel", back_populates="user")
+
 

@@ -21,7 +21,7 @@ def get_user_by_name(db: Session, name: str):
 
 #put
 def update_user(db: Session, user_id: int, user: UserModel):
-    db.query(UserModel).filter(UserModel.id == user_id).update(user)
+    db.query(UserModel).filter(UserModel.id == user_id).update(user.dict())
     db.commit()
     return db.query(UserModel).filter(UserModel.id == user_id).first()
 
