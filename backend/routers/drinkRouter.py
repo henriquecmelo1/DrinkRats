@@ -15,8 +15,8 @@ async def get_single_drink(drink_id: int, db: Session = Depends(get_db)):
     return get_drink(db=db, drink_id=drink_id)
 
 @router.get("/", response_model=list[Drink])
-async def get_all_drinks(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return get_drinks(db=db, skip=skip, limit=limit)
+async def get_all_drinks(db: Session = Depends(get_db)):
+    return get_drinks(db=db)
 
 @router.put("/{drink_id}", response_model=Drink)
 async def update_single_drink(drink_id: int, drink: DrinkBase, db: Session = Depends(get_db)):

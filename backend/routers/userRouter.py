@@ -15,8 +15,8 @@ async def get_single_user(user_id: int, db: Session = Depends(get_db)):
     return get_user(db=db, user_id=user_id)
 
 @router.get("/", response_model=list[User])
-async def get_all_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return get_users(db=db, skip=skip, limit=limit)
+async def get_all_users(db: Session = Depends(get_db)):
+    return get_users(db=db)
 
 @router.put("/{user_id}", response_model=User)
 async def update_single_user(user_id: int, user: UserBase, db: Session = Depends(get_db)):
