@@ -27,9 +27,10 @@ def update_user(db: Session, user_id: int, user: UserModel):
 
 #delete
 def delete_user(db: Session, user_id: int):
+    name = db.query(UserModel).filter(UserModel.id == user_id).first().name
     db.query(UserModel).filter(UserModel.id == user_id).delete()
     db.commit()
-    return user_id
+    return "O jogador " + name + " foi deletado com sucesso!"
 
 
 

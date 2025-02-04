@@ -21,13 +21,14 @@ def get_log_by_name(db: Session, name: str):
 
 #put
 def update_log(db: Session, log_id: int, log: Log):
-    db.query(Log).filter(Log.id == log_id).update(log)
+    db.query(Log).filter(Log.id == log_id).update(log.dict())
     db.commit()
     return db.query(Log).filter(Log.id == log_id).first()
 
 #delete
 def delete_log(db: Session, log_id: int):
+    register = db.query(Log).filter(Log.id == log_id).first().name
     db.query(Log).filter(Log.id == log_id).delete()
     db.commit()
-    return log_id
+    return "O registro " + register + " foi deletado com sucesso!"
 
