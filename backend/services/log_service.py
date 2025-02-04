@@ -13,8 +13,8 @@ def create_log(db: Session, log: LogModel):
 def get_log(db: Session, log_id: int):
     return db.query(LogModel).filter(LogModel.id == log_id).first()
 
-def get_logs(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(LogModel).offset(skip).limit(limit).all()
+def get_logs(db: Session):
+    return db.query(LogModel).all()
 
 def get_log_by_name(db: Session, name: str):
     return db.query(LogModel).filter(LogModel.name == name).first()
