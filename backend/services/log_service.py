@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
-from models.logModel import Log
+from models.logModel import LogModel
 
 #post
-def create_log(db: Session, log: Log):
-    db_log = Log(**log.dict())
+def create_log(db: Session, log: LogModel):
+    db_log = LogModel(**log.dict())
     db.add(db_log)
     db.commit()
     db.refresh(db_log)
@@ -11,24 +11,23 @@ def create_log(db: Session, log: Log):
 
 #get
 def get_log(db: Session, log_id: int):
-    return db.query(Log).filter(Log.id == log_id).first()
+    return db.query(LogModel).filter(LogModel.id == log_id).first()
 
 def get_logs(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(Log).offset(skip).limit(limit).all()
+    return db.query(LogModel).offset(skip).limit(limit).all()
 
 def get_log_by_name(db: Session, name: str):
-    return db.query(Log).filter(Log.name == name).first()
+    return db.query(LogModel).filter(LogModel.name == name).first()
 
 #put
-def update_log(db: Session, log_id: int, log: Log):
-    db.query(Log).filter(Log.id == log_id).update(log.dict())
+def update_log(db: Session, log_id: int, log: LogModel):
+    db.query(LogModel).filter(LogModel.id == log_id).update(log.dict())
     db.commit()
-    return db.query(Log).filter(Log.id == log_id).first()
+    return db.query(LogModel).filter(LogModel.id == log_id).first()
 
 #delete
 def delete_log(db: Session, log_id: int):
-    register = db.query(Log).filter(Log.id == log_id).first().name
-    db.query(Log).filter(Log.id == log_id).delete()
+    db.query(LogModel).filter(LogModel.id == log_id).delete()
     db.commit()
-    return "O registro " + register + " foi deletado com sucesso!"
+    return "O registro " + str(log_id) + " foi deletado com sucesso!"
 

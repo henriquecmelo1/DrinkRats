@@ -1,8 +1,9 @@
 from db.database import Base
-from sqlalchemy import Column, Integer, String, DateTime, func, ForeignKey
+from sqlalchemy import Column, Integer, Date, ForeignKey, Time, cast, func
 from sqlalchemy.orm import relationship
 from models.userModel import UserModel
 from models.drinkModel import DrinkModel
+from datetime import date, time
 
 
 class LogModel(Base):
@@ -10,6 +11,7 @@ class LogModel(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.id')) 
     drink_id = Column(Integer, ForeignKey('drinks.id'))
-    data = Column(DateTime, default=func.now())
+    date = Column(Date, default=date.today())
+    time = Column(Time, default=cast(func.now(), Time))
 
 
