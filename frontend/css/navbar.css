@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-holder{
+    background-color: blue;
+    position: relative;
+    z-index: 999;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: red;
+    font-size: 1.2rem;
+}
+
+.nav-ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+}
