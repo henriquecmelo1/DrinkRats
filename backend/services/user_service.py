@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from models.userModel import UserModel
+from sqlalchemy import func
+from models import UserModel, DrinkModel, LogModel
 
 #post
 def create_user(db: Session, user: UserModel):
@@ -33,4 +34,16 @@ def delete_user(db: Session, user_id: int):
     return "O jogador " + name + " foi deletado com sucesso!"
 
 
+
+
+def update_user_points(db: Session, user_id: int):
+    
+    total_points = (
+        db.query(func.sum(DrinkModel.points)).join(LogModel).filter(LogModel.user_id == user_id).scalar()
+    ) or 0
+
+    user = db.query(UserModel).filter(UserModel.id == user_id).first()
+    if user:
+        user.points = total_points
+        db.commit()
 

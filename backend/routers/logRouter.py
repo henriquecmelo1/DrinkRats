@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from schemas.logSchema import LogBase, Log
-from services.log_service import create_log, get_log, get_logs, update_log, delete_log
+from services.log_service import create_log, get_log, get_logs, update_log, delete_log, delete_last_drink
 from sqlalchemy.orm import Session
 from db.database import get_db
 
@@ -26,3 +26,7 @@ async def update_single_log(log_id: int, log: LogBase, db: Session = Depends(get
 async def delete_single_log(log_id: int, db: Session = Depends(get_db)):
     return delete_log(db=db, log_id=log_id)
 
+
+@router.delete("/{user_id}/{drink_id}", response_model=str)
+async def delete_last_drink_log(user_id: int, drink_id: int, db: Session = Depends(get_db)):
+    return delete_last_drink(db=db, user_id=user_id, drink_id=drink_id)
