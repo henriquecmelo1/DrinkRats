@@ -5,9 +5,9 @@ function DrinkPoints() {
                 <div className="card-header d-flex justify-content-between align-items-center" style={{ backgroundColor: '#f0f0f0' }}>
                     <h5 className="">Bebida</h5>
                     <div>
-                        <button className="btn btn-primary">+</button>
+                        <button className="btn btn-primary"><i className="bi bi-plus"></i></button>
                         <span className="mx-3">1</span>
-                        <button className="btn btn-primary">-</button>
+                        <button className="btn btn-primary"><i className="bi bi-dash"></i></button>
                     </div>
                 </div>
 

@@ -6,9 +6,9 @@ function DrinkAmount() {
                 <h5 className="card-title">bebida</h5>
 
                 <div>
-                    <button className="btn btn-primary">+</button>
+                    <button className="btn btn-outline-success"><i className="bi bi-plus"></i></button>
                     <span className="mx-3">0</span>
-                    <button className="btn btn-primary">-</button>
+                    <button className="btn btn-outline-danger"><i className="bi bi-dash"></i></button>
                 </div>
 
             </div>
