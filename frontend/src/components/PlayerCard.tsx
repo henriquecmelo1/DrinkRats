@@ -1,17 +1,19 @@
 import DrinkAmount from "./DrinkAmount";
-// import DrinkPoints from "./DrinkPoints";
 
+interface Props {
+    name: string;
+}
 
-function PlayerCard() {
+function PlayerCard(props: Props) {
     return (
         <div className="card text-center p-0 ms-5 my-3 col-3" >
             <div className="card-header" style={{ backgroundColor: '#f0f0f0' }}>
-                <h5>usuário</h5>
+                <h5>{props.name}</h5>
             </div>
             <div className="card-body">
-                <DrinkAmount />
-                <DrinkAmount />
-                <DrinkAmount />
+                <DrinkAmount name="cerveja" amount={0}/>
+                <DrinkAmount name="vodka" amount={3}/>
+                <DrinkAmount name="moscow mule" amount={2}/>
 
             </div>
         </div>
