@@ -1,3 +1,5 @@
+// import { useState, useSyncExternalStore } from "react";
+
 interface Props {
     name: string;
     points: number;
@@ -5,9 +7,10 @@ interface Props {
 }
 
 
+
 function DrinkPoints(props: Props) {
     return (
-        <div className="card mt-3 ms-3 col-3 text-center" style={{ height: '18rem' }}>
+        <div className="card mt-3 col-3 text-center" style={{ height: '18rem' }}>
             <div className="row justify-content-center">
                 <div className="card-header d-flex justify-content-between align-items-center" style={{ backgroundColor: '#f0f0f0' }}>
                     <h5 className="">{props.name}</h5>

@@ -3,7 +3,7 @@ interface Props {
 }
 
 
-function User(props: Props) {
+function Player(props: Props) {
     return (
         <div className="card mb-2 mt-2 col-10">
 
@@ -20,4 +20,4 @@ function User(props: Props) {
     );
 }
 
-export default User;
+export default Player;

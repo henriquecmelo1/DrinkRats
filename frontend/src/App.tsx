@@ -1,19 +1,20 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import PlayerCard from './components/PlayerCard'
-import DrinkPoints from './components/DrinkPoints'
-import User from './components/User'
-import UserRank from './components/UserRank'
+
+import Players from './pages/Players'
+import Drinks from './pages/Drinks'
+import Ranking from './pages/Ranking'
+
 
 function App() {
 
   return (
-    <div className='row ms-1 justify-content-evenly'>
+    <div className='row justify-content-evenly'>
 
-      <UserRank name='Henrique' points={123}/>
-      <PlayerCard name='João'/>
-      <DrinkPoints name='cerveja' points={20} description='descrição'/>
-      <User name='Guilherme'/>
+      
+      <Ranking />
+      <Players />
+      <Drinks />
       
     </div>
   
