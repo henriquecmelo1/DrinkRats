@@ -1,15 +1,23 @@
 import { useState } from "react";
+import { addPlayer, updatePlayer } from "../services/playerService";
+
 
 
 interface PlayerModalProps {
     isOpen: boolean;
     close: () => void;
 
+    Player ?: {
+        id: number;
+        name: string;
+        points: number;
+    };
+
 }
 
 
 function PlayerModal(props: PlayerModalProps) {
-    const [name, setName] = useState("");
+    const [name, setName] = useState(props.Player?.name || ""); // State to store player name
 
 
     // Function to handle form submission
@@ -20,23 +28,12 @@ function PlayerModal(props: PlayerModalProps) {
         }
 
         try {
-            const response = await fetch("http://127.0.0.1:8000/users/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ name: name, points: 0 }),
-            });
-
-            if (!response.ok) {
-                throw new Error("Erro ao adicionar o jogador.");
-            }
-            setName(""); // Clear input field
-            props.close(); // Close modal
-            window.location.reload(); // Refresh page
+            await addPlayer(name); // Call addPlayer function from PlayerService
+            alert("Jogador adicionado com sucesso!");
+            setName("");
+            props.close();
         } catch (error) {
-            alert("Erro ao enviar dados. Tente novamente.");
-            console.error("Erro:", error);
+            alert("Erro ao adicionar o jogador.");
         }
     };
 
@@ -48,7 +45,9 @@ function PlayerModal(props: PlayerModalProps) {
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header justify-content-between">
-                            <h5 className="modal-title">Adicionar Jogador</h5>
+                            <h5 className="modal-title">
+                                {props.Player?.id ? 'Editar Jogador' : 'Adicionar Jogador'}
+                            </h5>
                             <button type="button" className="close" onClick={props.close}>
                                 <span>&times;</span>
                             </button>
@@ -72,9 +71,21 @@ function PlayerModal(props: PlayerModalProps) {
                             <button type="button" className="btn btn-secondary" onClick={props.close}>
                                 Fechar
                             </button>
-                            <button type="button" className="btn btn-primary" onClick={handleAddPlayer}>
-                                Adicionar
-                            </button>
+
+                           
+                            {props.Player ? (
+                                <button className="btn btn-warning" onClick={() => props.Player && updatePlayer(props.Player, name)}>
+                                    Editar
+                                </button>
+                            ) : (
+                                <button className="btn btn-primary" onClick={handleAddPlayer}>
+                                    Adicionar
+                                </button>
+                            )
+                                
+                            }
+
+                            
 
                         </div>
                     </div>

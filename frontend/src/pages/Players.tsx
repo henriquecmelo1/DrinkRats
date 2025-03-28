@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Player from "../components/Player";
 import PlayerModal from "../components/PlayerModal";
+import { getPlayers } from "../services/playerService";
 
 interface PlayerType {
     id: number;
@@ -13,12 +14,10 @@ function PlayerList() {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/users/")
-            .then((response) => response.json())
-            .then((data) => setPlayers(data))
-            .catch((error) => console.error("Error fetching players:", error));
-            
-        }, []);
+        getPlayers()
+          .then((data) => setPlayers(data))
+          .catch((error) => console.error("Error fetching players:", error));
+      }, []);
 
     function closeModal() {
         setShowModal(false);
@@ -28,11 +27,11 @@ function PlayerList() {
     return (<>
         <div className="card my-3 mx-3 col-10 align-items-center"> 
             {Players.map((SinglePlayer) => (
-                <Player key={SinglePlayer.id} name={SinglePlayer.name} />
+                <Player key={SinglePlayer.id} Player={SinglePlayer}/>
             ))}
         </div>
         <button className="btn btn-primary col-2" onClick={() => setShowModal(!showModal) }>Adicionar Novo Jogador</button>
-        <div></div>
+        
         <PlayerModal isOpen={showModal}  close={closeModal}/>
 
 
