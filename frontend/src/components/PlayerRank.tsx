@@ -1,11 +1,11 @@
-interface Props {
+interface PlayerRankProps {
     name: string;
     points: number;
     index: number;
 }
 
 
-function PlayerRank(props: Props) {
+function PlayerRank(props: PlayerRankProps) {
     return (
         <div className="card mb-2 mt-2 col-10">
 

@@ -1,10 +1,10 @@
-interface Props {
+interface DrinkAmountProps {
     name: string;
     amount: number;
 }
 
 
-function DrinkAmount(props: Props) {
+function DrinkAmount(props: DrinkAmountProps) {
     return (
         <div className="card mb-2">
 

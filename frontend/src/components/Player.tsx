@@ -3,7 +3,7 @@ import { useState } from "react";
 import PlayerModal from "./PlayerModal";
 
 
-interface Props {
+interface PlayerProps {
     Player: {
         id: number;
         name: string;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 
-function Player(player: Props) {
+function Player(player: PlayerProps) {
     const [showModal, setShowModal] = useState(false);
 
     function closeModal() {

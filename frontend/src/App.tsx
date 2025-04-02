@@ -1,8 +1,6 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import PlayerModal from './components/PlayerModal'
-
 
 import Players from './pages/Players'
 import Drinks from './pages/Drinks'
@@ -16,11 +14,10 @@ function App() {
 
       
       {/* <Ranking /> */}
-      {/* <Drinks /> */}
+      {/* <Players /> */}
+      <Drinks />
       
-      <Players />
-      
-      {/* <PlayerModal /> */}
+
 
     </div>
   

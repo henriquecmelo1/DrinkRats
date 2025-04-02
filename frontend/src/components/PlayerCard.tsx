@@ -1,10 +1,10 @@
 import DrinkAmount from "./DrinkAmount";
 
-interface Props {
+interface PlayerCardProps {
     name: string;
 }
 
-function PlayerCard(props: Props) {
+function PlayerCard(props: PlayerCardProps) {
     return (
         <div className="card text-center p-0 ms-5 my-3 col-3" >
             <div className="card-header" style={{ backgroundColor: '#f0f0f0' }}>
