@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
-from models.logModel import LogModel
+from collections import defaultdict
+from models import *
 from .user_service import update_user_points
 
 #post
@@ -18,8 +19,39 @@ def get_log(db: Session, log_id: int):
 def get_logs(db: Session):
     return db.query(LogModel).all()
 
-def get_log_by_name(db: Session, name: str):
-    return db.query(LogModel).filter(LogModel.name == name).first()
+def get_logs_per_user(db: Session, user_id: int):
+    return db.query(LogModel).filter(LogModel.user_id == user_id).all()
+
+def get_drinks_per_user(db: Session, user_id: int):
+    logs = db.query(LogModel).filter(LogModel.user_id == user_id).all()
+    drinks = db.query(DrinkModel).all()
+
+    drink_counts = defaultdict(int)
+
+    # Conta quantas vezes cada bebida aparece nos logs
+    for log in logs:
+        drink_counts[log.drink_id] += 1
+
+    # Cria a resposta formatada
+    result = [
+        {
+            "drink_name": drink.name,
+            "drink_count": drink_counts[drink.id]  # Se não estiver nos logs, será 0
+        }
+        for drink in drinks
+    ]
+
+    # Ordena pelo número de consumos (descendente)
+    result.sort(key=lambda x: x["drink_name"])
+
+    return result
+
+
+    
+        
+
+    
+
 
 #put
 def update_log(db: Session, log_id: int, log: LogModel):
