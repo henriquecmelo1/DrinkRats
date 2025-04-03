@@ -29,7 +29,6 @@ function PlayerModal(props: PlayerModalProps) {
 
         try {
             await addPlayer(name); // Call addPlayer function from PlayerService
-            alert("Jogador adicionado com sucesso!");
             setName("");
             props.close();
         } catch (error) {

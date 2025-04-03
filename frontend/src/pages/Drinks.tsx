@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import DrinkPoints from "../components/DrinkPoints";
+import { getDrinks } from "../services/drinkService";
+import DrinkModal from "../components/DrinkModal";
 
 interface DrinkType {
     id: number;
@@ -10,23 +12,29 @@ interface DrinkType {
 
 function DrinksList(){
     const [Drinks, setDrinks] = useState<DrinkType[]>([]);
+    const [showModal, setShowModal] = useState(false);
     
         useEffect(() => {
-            fetch("http://127.0.0.1:8000/drinks/")
-                .then((response) => response.json())
+            getDrinks()
                 .then((data) => setDrinks(data))
                 .catch((error) => console.error("Error fetching players:", error));
                 
             }, []);
 
+    function closeModal() {
+        setShowModal(false);
+    }
+
         return(
             <>
             <div className="row p-0 m-0 justify-content-evenly">
                 {Drinks.map((SingleDrink) => (
-                    <DrinkPoints key={SingleDrink.id} name={SingleDrink.name} description={SingleDrink.description} points={SingleDrink.points} />
+                    <DrinkPoints key={SingleDrink.id} Drink={SingleDrink} />
                 ))}
             </div>
-            <button className="btn btn-primary mt-3 mx-0 p-0 col-2">Adicionar Nova Bebida</button>
+            <button className="btn btn-primary mt-3 mx-0 p-0 col-2" onClick={()=> setShowModal(!showModal)}>Adicionar Nova Bebida</button>
+            <DrinkModal isOpen={showModal} close={closeModal}/>
+            
             </>
         )
 }

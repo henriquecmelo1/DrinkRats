@@ -7,6 +7,8 @@ import Drinks from './pages/Drinks'
 import Ranking from './pages/Ranking'
 
 
+
+
 function App() {
 
   return (
@@ -16,7 +18,6 @@ function App() {
       {/* <Ranking /> */}
       {/* <Players /> */}
       <Drinks />
-      
 
 
     </div>

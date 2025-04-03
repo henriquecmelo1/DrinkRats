@@ -17,13 +17,12 @@ export const addPlayer = (playerName: string) => {
 };
 
 
-export const deletePlayer = (playerID: number) => {
-  return fetch(`http://127.0.0.1:8000/users/${playerID}`, {
+export const deletePlayer = (player_id: number) => {
+  return fetch(`http://127.0.0.1:8000/users/${player_id}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
     .then(() => window.location.reload())
-    .then(() => alert("Jogador excluído com sucesso!"))
     .catch((error) => {
       console.error("Error deleting player:", error);
       throw error;
@@ -32,7 +31,7 @@ export const deletePlayer = (playerID: number) => {
 
 
 
-export const updatePlayer = (Player: {name: string, id: number, points: number}, newName: string) => {
+export const updatePlayer = (Player: { name: string, id: number, points: number }, newName: string) => {
   return fetch(`http://127.0.0.1:8000/users/${Player.id}`, {
     method: "PUT",
     headers: {
@@ -42,7 +41,6 @@ export const updatePlayer = (Player: {name: string, id: number, points: number},
   })
     .then((response) => response.json())
     .then(() => window.location.reload())
-    .then(() => alert("Jogador atualizado com sucesso!"))
     .catch((error) => {
       console.error("Error updating player:", error);
       throw error;
@@ -55,6 +53,6 @@ export const getPlayers = () => {
     .then((response) => response.json())
     .catch((error) => {
       console.error("Error fetching players:", error);
-      throw error; // Rethrow error to be handled in the component
+      throw error;
     });
 };
