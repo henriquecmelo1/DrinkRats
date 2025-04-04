@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from sqlalchemy import select, func
 from collections import defaultdict
 from models import *
 from .user_service import update_user_points
@@ -21,7 +21,6 @@ def get_logs(db: Session):
     return db.query(LogModel).all()
 
 def get_logs_per_user(db: Session, user_id: int):
-    # return db.query(LogModel).filter(LogModel.user_id == user_id).all()
     consulta = select(DrinkModel.name, LogModel.date, LogModel.time, LogModel.id).join(LogModel).filter(LogModel.user_id == user_id).order_by(LogModel.date.desc(), LogModel.time.desc())
     resultado = db.execute(consulta).all()
 
@@ -51,16 +50,16 @@ def get_drinks_per_user(db: Session, user_id: int):
     # Cria a resposta formatada
     result = [
         {
+            "drink_id": drink.id,
             "drink_name": drink.name,
             "drink_count": drink_counts[drink.id]  # Se não estiver nos logs, será 0
         }
         for drink in drinks
     ]
 
-    # Ordena pelo número de consumos (descendente)
-    result.sort(key=lambda x: x["drink_name"])
 
     return result
+
 
 
     

@@ -27,7 +27,7 @@ async def get_user_logs(user_id: int, db: Session = Depends(get_db)):
 
 
 
-@router.get("/user/{user_id}/drinks")
+@router.get("/drinks/{user_id}")
 async def get_user_drinks(user_id: int, db: Session = Depends(get_db)):
     return get_drinks_per_user(db=db, user_id=user_id)
 

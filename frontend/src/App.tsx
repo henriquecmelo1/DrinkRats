@@ -5,8 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Players from './pages/Players'
 import Drinks from './pages/Drinks'
 import Ranking from './pages/Ranking'
+import Loggings from './pages/Loggings'
 
-import LogModal from './components/LogModal'
+import PlayerCard from './components/PlayerCard'
 
 
 
@@ -23,10 +24,11 @@ function App() {
     <div className='row justify-content-evenly'>
 
       
-      <Ranking />
+      {/* <Ranking /> */}
       {/* <Players /> */}
       {/* <Drinks /> */}
-    {/* <LogModal isOpen={true} close={()=>{}} Log={log} playerName='Henrique' player_id={4} /> */}
+      <Loggings />
+
 
     </div>
   

@@ -56,3 +56,8 @@ export const getPlayers = () => {
       throw error;
     });
 };
+
+// players ^^^^
+// loggings vvvv
+
+
