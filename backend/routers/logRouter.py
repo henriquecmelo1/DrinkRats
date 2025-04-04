@@ -19,7 +19,7 @@ async def get_all_logs(db: Session = Depends(get_db)):
 
 
 # NAO APAGAR
-@router.get("/user/{user_id}", response_model=list[Log])
+@router.get("/user/{user_id}")
 async def get_user_logs(user_id: int, db: Session = Depends(get_db)):
     return get_logs_per_user(db=db, user_id=user_id)
 #--------------------------------------------------------------

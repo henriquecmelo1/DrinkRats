@@ -7,7 +7,7 @@ interface PlayerType {
     points: number;
 }
 
-function PlayerList() {
+function Ranking() {
     const [Players, setPlayers] = useState<PlayerType[]>([]);
 
     useEffect(() => {
@@ -26,11 +26,11 @@ function PlayerList() {
 return (<>
     <div className="card my-3 mx-3 col-10 align-items-center">
         {Players.map((SinglePlayer, index) => (
-            <PlayerRank index={index+1} key={SinglePlayer.id} name={SinglePlayer.name} points={SinglePlayer.points} />
+            <PlayerRank index={index+1} id={SinglePlayer.id} name={SinglePlayer.name} points={SinglePlayer.points} />
         ))}
     </div>
 </>
 );
 }
 
-export default PlayerList;
+export default Ranking;
