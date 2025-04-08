@@ -14,7 +14,7 @@ import Loggings from './pages/Loggings'
 function App() {
 
   return (
-    <div className='row justify-content-evenly'>
+    <div className='row justify-content-evenly m-0'>
 
       <Routes>
         <Route path="/ranking" element={<Ranking />} />
