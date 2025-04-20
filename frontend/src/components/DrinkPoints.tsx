@@ -16,6 +16,7 @@ interface DrinkPointsProps {
 
 function DrinkPoints(props: DrinkPointsProps) {
     const [showModal, setShowModal] = useState(false);
+    const [points, setPoints] = useState(props.Drink.points);
 
     function closeModal() {
         setShowModal(false);
@@ -28,9 +29,19 @@ function DrinkPoints(props: DrinkPointsProps) {
                 <div className="card-header d-flex justify-content-between align-items-center" style={{ backgroundColor: '#f0f0f0' }}>
                     <h5 className="">{props.Drink.name}</h5>
                     <div>
-                        <button className="btn btn-primary" onClick={()=> increaseDrinkPoints(props.Drink.id, props.Drink)}><i className="bi bi-plus"></i></button>
-                        <span className="mx-3">{props.Drink.points}</span>
-                        <button className="btn btn-primary" onClick={() => decreaseDrinkPoints(props.Drink.id, props.Drink)}><i className="bi bi-dash"></i></button>
+                        <button className="btn btn-primary" onClick={() => {
+                            const newPoints = points + 1;
+                            setPoints(newPoints);
+                            increaseDrinkPoints(props.Drink.id, props.Drink, newPoints); 
+                        }}>
+                            <i className="bi bi-plus"></i>
+                        </button>
+                        <span className="mx-3">{points}</span>
+                        <button className="btn btn-primary" onClick={() => {
+                            const newPoints = points - 1;
+                            setPoints(newPoints);
+                            decreaseDrinkPoints(props.Drink.id, props.Drink, newPoints);
+                        }}><i className="bi bi-dash"></i></button>
                     </div>
                 </div>
 
@@ -49,7 +60,7 @@ function DrinkPoints(props: DrinkPointsProps) {
 
 
         <DrinkModal isOpen={showModal} close={closeModal} Drink={props.Drink} />
-        </>)
+    </>)
 }
 
 export default DrinkPoints;

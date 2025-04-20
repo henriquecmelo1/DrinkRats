@@ -1,4 +1,5 @@
 import { addLog, deleteLastDrink } from "../services/logService";
+import { useState } from "react";
 
 
 interface DrinkAmountProps {
@@ -12,6 +13,8 @@ interface DrinkAmountProps {
 
 
 function DrinkAmount(props: DrinkAmountProps) {
+    const [amount, setAmount] = useState(props.amount);
+
     return (
         <div className="card mb-2">
 
@@ -19,9 +22,9 @@ function DrinkAmount(props: DrinkAmountProps) {
                 <h5 className="card-title">{props.drink_name}</h5>
 
                 <div>
-                    <button className="btn btn-outline-success" onClick={()=>{addLog(props.player_id, props.drink_id)}}><i className="bi bi-plus"></i></button>
-                    <span className="mx-3">{props.amount}</span>
-                    <button className="btn btn-outline-danger" onClick={()=>{deleteLastDrink(props.player_id, props.drink_id)}}><i className="bi bi-dash"></i></button>
+                    <button className="btn btn-outline-success" onClick={()=>{addLog(props.player_id, props.drink_id); setAmount(amount+1)}}><i className="bi bi-plus"></i></button>
+                    <span className="mx-3">{amount}</span>
+                    <button className="btn btn-outline-danger" onClick={()=>{deleteLastDrink(props.player_id, props.drink_id); setAmount(amount-1)}}><i className="bi bi-dash"></i></button>
                 </div>
 
             </div>

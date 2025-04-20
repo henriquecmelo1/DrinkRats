@@ -63,32 +63,30 @@ export const updateDrink = (drink: Drink, drink_id: number) => {
 };
 
 
-export const increaseDrinkPoints = (drink_id: number, drink: Drink) => {
+export const increaseDrinkPoints = (drink_id: number, drink: Drink, points:number) => {
   return fetch(`http://127.0.0.1:8000/drinks/${drink_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name: drink.name, points: drink.points+1, description: drink.description }),
+    body: JSON.stringify({ name: drink.name, points: points, description: drink.description }),
   })
     .then((response) => response.json())
-    .then(() => window.location.reload())
     .catch((error) => {
       console.error("Error updating drink:", error);
       throw error;
     });
 };
 
-export const decreaseDrinkPoints = (drink_id: number, drink: Drink) => {
+export const decreaseDrinkPoints = (drink_id: number, drink: Drink, points: number) => {
   return fetch(`http://127.0.0.1:8000/drinks/${drink_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name: drink.name, points: drink.points-1, description: drink.description }),
+    body: JSON.stringify({ name: drink.name, points: points, description: drink.description }),
   })
     .then((response) => response.json())
-    .then(() => window.location.reload())
     .catch((error) => {
       console.error("Error updating drink:", error);
       throw error;
