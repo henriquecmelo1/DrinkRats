@@ -17,8 +17,6 @@ def create_log(db: Session, log: LogModel):
 def get_log(db: Session, log_id: int):
     return db.query(LogModel).filter(LogModel.id == log_id).first()
 
-def get_logs(db: Session):
-    return db.query(LogModel).all()
 
 def get_logs_per_user(db: Session, user_id: int):
     consulta = select(DrinkModel.name, LogModel.date, LogModel.time, LogModel.id).join(LogModel).filter(LogModel.user_id == user_id).order_by(LogModel.date.desc(), LogModel.time.desc())
@@ -62,29 +60,6 @@ def get_drinks_per_user(db: Session, user_id: int):
 
 
 
-    
-        
-
-    
-
-
-#put
-def update_log(db: Session, log_id: int, log: LogModel):
-    #Pegando o user para verificar se houve mudança
-    temp = db.query(LogModel).filter(LogModel.id == log_id).first()
-    old_user = temp.user_id
-
-    #Atualizando o log
-    db.query(LogModel).filter(LogModel.id == log_id).update(log.dict())
-    db.commit()
-
-    #Atualizando os pontos
-    update_user_points(db, log.user_id)
-    if old_user != log.user_id:
-        update_user_points(db, old_user)
-
-    return db.query(LogModel).filter(LogModel.id == log_id).first()
-
 #delete
 def delete_last_drink(db: Session, user_id: int, drink_id: int):
     #Pegando o ultimo log do user que o drink de drink_id
@@ -104,7 +79,7 @@ def delete_log(db: Session, log_id: int):
     db.commit()
 
     #Atualizando os pontos
-    update_user_points(db, log.user_id)
+    update_user_points(db, user_id)
 
     return "O registro " + str(log_id) + " foi deletado com sucesso!"
 

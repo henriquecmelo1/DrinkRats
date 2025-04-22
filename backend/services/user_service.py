@@ -17,8 +17,6 @@ def get_user(db: Session, user_id: int):
 def get_users(db: Session):
     return db.query(UserModel).all()
 
-def get_user_by_name(db: Session, name: str):
-    return db.query(UserModel).filter(UserModel.name == name).first()
 
 #put
 def update_user(db: Session, user_id: int, user: UserModel):
@@ -47,3 +45,7 @@ def update_user_points(db: Session, user_id: int):
         user.points = total_points
         db.commit()
 
+def update_all_user_points(db: Session):
+    users = db.query(UserModel).all()
+    for user in users:
+        update_user_points(db, user.id)
