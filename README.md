@@ -44,7 +44,6 @@ Criado para unir tecnologia e diversão, o DrinkRats surgiu da vontade de tornar
 - Python 3.9+
 - Node.js 18+
 - PostgreSQL
-- Docker (opcional, mas recomendado)
 
 ### 1. Clone o repositório
 ```bash
@@ -53,7 +52,7 @@ cd DrinkRats
 ```
 
 ### 2. Configure o banco de dados
-Crie um banco PostgreSQL e defina as variáveis no arquivo .env
+Crie um banco PostgreSQL e defina as variáveis no arquivo `.env`
 ```bash
 DATABASE_URL=postgresql://usuario:senha@localhost:5432/DrinkRats
 ```
@@ -72,7 +71,9 @@ npm install
 npm run dev
 ```
 
-### 5. Acesse o app em http://localhost:5173/
+###  Acesse o app em http://localhost:5173/
+
+---
 
 
 ## 📂 Estrutura do Projeto
@@ -121,3 +122,5 @@ DrinkRats/
 <p align="center">
   <img src="screenshots/drinks.png" alt="Drinks" width="600"/>
 </p>
+
+---
