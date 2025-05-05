@@ -71,7 +71,11 @@ function DrinkModal(props: DrinkModalProps) {
                                         required
                                     ></textarea>
                                 </div>
-                                <button type="submit" className="btn btn-primary">{props.Drink ? 'Editar' : 'Adicionar'}</button>
+                                {props.Drink ? (
+                                    <button type="submit" className="btn btn-warning">Editar</button>
+                                ) : (
+                                    <button type="submit" className="btn btn-primary">Adicionar</button>
+                                )}
                             </form>
                         </div>
                     </div>
