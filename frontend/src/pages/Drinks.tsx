@@ -17,7 +17,7 @@ function DrinksList(){
         useEffect(() => {
             getDrinks()
                 .then((data) => setDrinks(data))
-                .catch((error) => console.error("Error fetching players:", error));
+                .catch((error) => console.error("Error fetching drinks:", error));
                 
             }, []);
 

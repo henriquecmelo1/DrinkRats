@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from models.drinkModel import DrinkModel
+from .user_service import update_all_user_points
 
 #post
 def create_drink(db: Session, drink: DrinkModel):
@@ -10,19 +11,15 @@ def create_drink(db: Session, drink: DrinkModel):
     return db_drink
 
 #get
-def get_drink(db: Session, drink_id: int):
-    return db.query(DrinkModel).filter(DrinkModel.id == drink_id).first()
-
 def get_drinks(db: Session):
     return db.query(DrinkModel).all()
 
-def get_drink_by_name(db: Session, name: str):
-    return db.query(DrinkModel).filter(DrinkModel.name == name).first()
 
 #put
 def update_drink(db: Session, drink_id: int, drink: DrinkModel):
     db.query(DrinkModel).filter(DrinkModel.id == drink_id).update(drink.dict())
     db.commit()
+    update_all_user_points(db)
     return db.query(DrinkModel).filter(DrinkModel.id == drink_id).first()
 
 #delete
