@@ -4,15 +4,15 @@
   <img src="frontend/public/logo.webp" alt="DrinkRats Logo" width="200"/>
 </p>
 
-**DrinkRats** é um web app para jogos de bebida com amigos! Adicione jogadores, bebidas com suas pontuações e registre quem bebeu o quê. O sistema calcula automaticamente as pontuações e traz uma camada divertida de competição e desafio ao seu rolê.<br><br>
+**DrinkRats** é um web app para jogos de bebida com amigos! Adicione jogadores, bebidas com suas pontuações e registre quem bebeu o quê. O sistema calcula automaticamente as pontuações e traz uma camada divertida de competição e desafio ao seu rolê.
 
-
+<br>
 
 ## 🧠 Motivação
 
 Criado para unir tecnologia e diversão, o DrinkRats surgiu da vontade de tornar jogos de bebida mais organizados, competitivos e engraçados. Em vez de anotar tudo em papel ou discutir quem bebeu mais, deixe o sistema fazer isso por você.
 
-
+<br>
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -25,7 +25,12 @@ Criado para unir tecnologia e diversão, o DrinkRats surgiu da vontade de tornar
 - **[React](https://reactjs.org/)** — Biblioteca JavaScript para construção de interfaces interativas.
 - **[Vite](https://vite.dev/)** — Ferramenta de build rápida e moderna para aplicações React.
 
----
+### Deploy/Containerização
+- **[Docker](https://www.docker.com/)** — Conteinerização de aplicações.
+- **[Docker Compose](https://docs.docker.com/compose/)** — Orquestração dos containers.
+
+<br>
+
 
 ## 🔍 Funcionalidades
 
@@ -36,57 +41,67 @@ Criado para unir tecnologia e diversão, o DrinkRats surgiu da vontade de tornar
 - ✅ Interface intuitiva e responsiva  
 - ✅ Exibição de ranking atualizado em tempo real
 
----
+<br>
 
 ## 💻 Como Rodar Localmente
 
 ### Pré-requisitos
-- Python 3.9+
-- Node.js 18+
-- PostgreSQL
+- **[Docker](https://www.docker.com/)** instalado na sua máquina
+- **[Docker Compose](https://docs.docker.com/compose/)** (geralmente já vem incluso no Docker Desktop)
 
-### 1. Clone o repositório
+
+### 🚀 Passos para rodar
+
+1. Clone o repositório:
 ```bash
 git clone https://github.com/henriquecmelo1/DrinkRats.git
 cd DrinkRats
 ```
 
-### 2. Configure o banco de dados
-Crie um banco PostgreSQL e defina as variáveis no arquivo `.env`
-```bash
-DATABASE_URL=postgresql://usuario:senha@localhost:5432/DrinkRats
+2. Crie o arquivo `.env` na raiz do projeto com o conteúdo abaixo (exemplo):
+
+```env
+POSTGRES_USER=usuario
+POSTGRES_PASSWORD=senha
+POSTGRES_DB=DrinkRats
 ```
 
-### 3. Rode o Back-End
+3. Suba os containers com Docker Compose
 ```bash
-cd backend
-pip install -r requirements.txt
-uvicorn api:app --reload
+docker-compose up
 ```
 
-### 4. Rode o Front-End
-```bash
-cd frontend
-npm install
-npm run dev
+4. Acesse o app no navegador
+```
+http://localhost:5173
 ```
 
-###  Acesse o app em http://localhost:5173/
+O backend estará rodando na porta `8000` e o banco PostgreSQL na porta `5432` (caso queira acessar diretamente via algum cliente de banco de dados).
 
----
+<br>
+
+## 🐳 Imagens Docker
+
+As imagens estão publicadas no Docker Hub:
+
+- Backend: [`henriquecmelo/drinkrats-backend`](https://hub.docker.com/r/henriquecmelo/drinkrats-backend)
+- Frontend: [`henriquecmelo/drinkrats-frontend`](https://hub.docker.com/r/henriquecmelo/drinkrats-frontend)
+- Banco de dados: utiliza a imagem oficial do **Postgres**
+
+<br>
 
 
 ## 📂 Estrutura do Projeto
 ```bash
 DrinkRats/
 ├── backend/
-│   ├── app/
-│   │   ├── db/
-│   │   ├── models/
-│   │   ├── routers/
-│   │   ├── schemas/
-│   │   ├── services/
-│   │   └── api.py
+│   ├── db/
+│   ├── models/
+│   ├── routers/
+│   ├── schemas/
+│   ├── services/
+│   ├── api.py
+│   └── Dockerfile
 ├── frontend/
 │   ├── public/
 │   │   └── logo.webp
@@ -96,10 +111,13 @@ DrinkRats/
 │   │   ├── services/
 │   │   └── App.tsx
 │   │   └── main.tsx
-├── screenshots/    
+│   └──  Dockerfile
+├── screenshots/
+├── docker-compose.yml
 ├── README.md
 └── .env
 ```
+<br>
 
 ## 📸 Capturas de Tela
 
