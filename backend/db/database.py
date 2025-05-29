@@ -6,9 +6,14 @@ import os, time
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+POSTGRES_USER = os.getenv("POSTGRES_USER")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD")
+POSTGRES_DB = os.getenv("POSTGRES_DB")
 
-# engine = create_engine(DATABASE_URL)
+DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@db:5432/{POSTGRES_DB}"
+
+
+
 
 for i in range(10):
     try:
@@ -18,7 +23,7 @@ for i in range(10):
         break
     except OperationalError:
         print(f"Tentando conectar... ({i+1}/10)")
-        time.sleep(2)
+        time.sleep(6)
 else:
     print("Não foi possível conectar ao banco.")
     raise Exception("Database not ready")
