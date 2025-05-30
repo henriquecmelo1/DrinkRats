@@ -58,20 +58,18 @@ git clone https://github.com/henriquecmelo1/DrinkRats.git
 cd DrinkRats
 ```
 
-2. Crie o arquivo `.env` na raiz do projeto com o conteúdo abaixo (exemplo):
-
-```env
-POSTGRES_USER=usuario
-POSTGRES_PASSWORD=senha
-POSTGRES_DB=DrinkRats
+2. Crie o arquivo `.env` a partir do `.env.example` e ajuste as variáveis conforme sua preferência:  
+```bash
+cp .env.example .env
 ```
+Depois, abra o arquivo `.env` no editor de texto e configure os valores (usuário, senha, nome do banco etc).
 
-3. Suba os containers com Docker Compose
+3. Suba os containers com Docker Compose:
 ```bash
 docker-compose up
 ```
 
-4. Acesse o app no navegador
+4. Acesse o app no navegador:
 ```
 http://localhost:5173
 ```
