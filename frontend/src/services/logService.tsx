@@ -1,5 +1,7 @@
+const baseUrl = "http://127.0.0.1:8000"
+
 export const getLogsFromPlayer = (player_id: number) => {
-  return fetch(`http://127.0.0.1:8000/logs/user/${player_id}`)
+  return fetch(`${baseUrl}/logs/user/${player_id}`)
     .then((response) => response.json())
     .catch((error) => {
       console.error("Error fetching drinks:", error);
@@ -8,7 +10,7 @@ export const getLogsFromPlayer = (player_id: number) => {
 };
 
 export const deleteLog = (log_id: number) => {
-  return fetch(`http://127.0.0.1:8000/logs/${log_id}`, {
+  return fetch(`${baseUrl}/logs/${log_id}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -27,7 +29,7 @@ export const addLog = (player_id: number, drink_id: number) => {
   const time = now.toISOString().split("T")[1]; // "HH:MM:SS.sssZ"
 
 
-  return fetch("http://127.0.0.1:8000/logs/", {
+  return fetch("${baseUrl}/logs/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -43,7 +45,7 @@ export const addLog = (player_id: number, drink_id: number) => {
 
 
 export const deleteLastDrink = (player_id: number, drink_id: number) => {
-  return fetch(`http://127.0.0.1:8000/logs/${player_id}/${drink_id}`, {
+  return fetch(`${baseUrl}/logs/${player_id}/${drink_id}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -54,7 +56,7 @@ export const deleteLastDrink = (player_id: number, drink_id: number) => {
 };
 
 export const getDrinkAmount = (player_id: number) => {
-  return fetch(`http://127.0.0.1:8000/logs/drinks/${player_id}`)
+  return fetch(`${baseUrl}/logs/drinks/${player_id}`)
     .then((response) => response.json())
     .catch((error) => {
       console.error("Error fetching drinks:", error);

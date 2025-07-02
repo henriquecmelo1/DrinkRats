@@ -1,7 +1,7 @@
-
+const baseUrl = "http://127.0.0.1:8000"
 
 export const addPlayer = (playerName: string) => {
-  return fetch("http://127.0.0.1:8000/users/", {
+  return fetch(`${baseUrl}/users/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +18,7 @@ export const addPlayer = (playerName: string) => {
 
 
 export const deletePlayer = (player_id: number) => {
-  return fetch(`http://127.0.0.1:8000/users/${player_id}`, {
+  return fetch(`${baseUrl}/users/${player_id}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -32,7 +32,7 @@ export const deletePlayer = (player_id: number) => {
 
 
 export const updatePlayer = (Player: { name: string, id: number, points: number }, newName: string) => {
-  return fetch(`http://127.0.0.1:8000/users/${Player.id}`, {
+  return fetch(`${baseUrl}/users/${Player.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const updatePlayer = (Player: { name: string, id: number, points: number 
 
 
 export const getPlayers = () => {
-  return fetch("http://127.0.0.1:8000/users/")
+  return fetch(`${baseUrl}/users/`)
     .then((response) => response.json())
     .catch((error) => {
       console.error("Error fetching players:", error);

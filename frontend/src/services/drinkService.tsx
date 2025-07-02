@@ -4,10 +4,10 @@ interface Drink {
   points: number;
 }
 
-
+const baseUrl = "http://127.0.0.1:8000"
 
 export const addDrink = (drink: Drink) => {
-  return fetch("http://127.0.0.1:8000/drinks/", {
+  return fetch(`${baseUrl}/drinks/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const addDrink = (drink: Drink) => {
 };
 
 export const getDrinks = () => {
-  return fetch("http://127.0.0.1:8000/drinks/")
+  return fetch(`${baseUrl}/drinks/`)
     .then((response) => response.json())
     .catch((error) => {
       console.error("Error fetching drinks:", error);
@@ -34,7 +34,7 @@ export const getDrinks = () => {
 };
 
 export const deleteDrink = (drink_id: number) => {
-  return fetch(`http://127.0.0.1:8000/drinks/${drink_id}`, {
+  return fetch(`${baseUrl}/drinks/${drink_id}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -46,7 +46,7 @@ export const deleteDrink = (drink_id: number) => {
 };
 
 export const updateDrink = (drink: Drink, drink_id: number) => {
-  return fetch(`http://127.0.0.1:8000/drinks/${drink_id}`, {
+  return fetch(`${baseUrl}/drinks/${drink_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export const updateDrink = (drink: Drink, drink_id: number) => {
 
 
 export const increaseDrinkPoints = (drink_id: number, drink: Drink, points:number) => {
-  return fetch(`http://127.0.0.1:8000/drinks/${drink_id}`, {
+  return fetch(`${baseUrl}/drinks/${drink_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -79,7 +79,7 @@ export const increaseDrinkPoints = (drink_id: number, drink: Drink, points:numbe
 };
 
 export const decreaseDrinkPoints = (drink_id: number, drink: Drink, points: number) => {
-  return fetch(`http://127.0.0.1:8000/drinks/${drink_id}`, {
+  return fetch(`${baseUrl}/drinks/${drink_id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

@@ -7,11 +7,15 @@ interface PlayerType {
     points: number;
 }
 
+
+
 function Ranking() {
     const [Players, setPlayers] = useState<PlayerType[]>([]);
+    const baseUrl = "http://127.0.0.1:8000"
+
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/users/")
+        fetch(`${baseUrl}/users/`)
             .then((response) => response.json())
             .then((data) => {
                 // ordenando por pontos
