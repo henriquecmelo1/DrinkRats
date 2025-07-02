@@ -1,4 +1,4 @@
-const baseUrl = "http://127.0.0.1:8000"
+const baseUrl = "https://drinkrats.onrender.com"
 
 export const getLogsFromPlayer = (player_id: number) => {
   return fetch(`${baseUrl}/logs/user/${player_id}`)
@@ -29,7 +29,7 @@ export const addLog = (player_id: number, drink_id: number) => {
   const time = now.toISOString().split("T")[1]; // "HH:MM:SS.sssZ"
 
 
-  return fetch("${baseUrl}/logs/", {
+  return fetch(`${baseUrl}/logs/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

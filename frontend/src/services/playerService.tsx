@@ -1,4 +1,4 @@
-const baseUrl = "http://127.0.0.1:8000"
+const baseUrl = "https://drinkrats.onrender.com"
 
 export const addPlayer = (playerName: string) => {
   return fetch(`${baseUrl}/users/`, {

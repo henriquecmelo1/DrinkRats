@@ -11,7 +11,7 @@ interface PlayerType {
 
 function Ranking() {
     const [Players, setPlayers] = useState<PlayerType[]>([]);
-    const baseUrl = "http://127.0.0.1:8000"
+    const baseUrl = "https://drinkrats.onrender.com"
 
 
     useEffect(() => {
